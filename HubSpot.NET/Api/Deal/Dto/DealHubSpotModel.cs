@@ -29,10 +29,29 @@ namespace HubSpot.NET.Api.Deal.Dto
         public DealHubSpotModel()
         {
         }
-        /// <summary>
-        /// Contacts unique Id in HubSpot
-        /// </summary>
-        [DataMember(Name = "dealId")]
+
+
+
+
+    //For JOIN, should not be pushed to master
+    [DataMember(Name = "createdate")]
+    public string CreateDate { get; set; }
+
+    [DataMember(Name = "hs_lastmodifieddate")]
+    public string LastModifieddate { get; set; }
+
+
+
+
+
+
+
+
+
+    /// <summary>
+    /// Contacts unique Id in HubSpot
+    /// </summary>
+    [DataMember(Name = "dealId")]
         [IgnoreDataMember]
         public long? Id { get; set; }
 
