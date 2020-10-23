@@ -29,6 +29,9 @@ namespace HubSpot.NET.Api.Files.Dto
         [DataMember(Name="folder_paths")]
         public string FolderPaths { get; set; }
 
+        [DataMember(Name="Options")]
+        public Options Options { get; set; }
+
         public bool IsNameValue { get; }
 
         public void ToHubSpotDataEntity(ref dynamic dataEntity)
@@ -39,6 +42,22 @@ namespace HubSpot.NET.Api.Files.Dto
         {
         }
 
-        public string RouteBasePath => "/filemanager/api/v2";
+        public string RouteBasePath => "/filemanager/api/v3";
+    }
+    public class Options
+    {
+        private string _access;
+        public string Access {
+            get
+            {
+                if (_access == null)
+                    _access = "PRIVATE";
+                return _access;
+            }
+            set
+            {
+                _access = value;
+            }
+        }
     }
 }
