@@ -54,16 +54,20 @@ namespace HubSpot.NET.Core
 
         public T ExecuteMultipart<T>(string absoluteUriPath, byte[] data, string filename, Dictionary<string,string> parameters, Method method = Method.POST) where T : new()
         {
-            var fullUrl = $"{_baseUrl}{absoluteUriPath}".SetQueryParam("hapikey", _apiKey);
+            var fullUrl = $"{absoluteUriPath}".SetQueryParam("hapikey", _apiKey);
 
             var request = new RestRequest(fullUrl, method);
-
-            request.AddFile(filename, data, filename);
+            //request.AddHeader("content-type", "application/json");
+            //request.AddHeader("Accept", "application/json");
+            request.AddHeader("Content-Type", "multipart/form-data; application/json; charset=utf-8");
+            request.AddFile("file", data, filename);
+            //request.AddParameter("file", data);
 
             foreach (var kvp in parameters)
             {
                 request.AddParameter(kvp.Key, kvp.Value);
             }
+            //request.AddJsonBody(parameters);
 
             var response = _client.Execute<T>(request);
 

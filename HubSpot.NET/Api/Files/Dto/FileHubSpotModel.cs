@@ -47,7 +47,7 @@ namespace HubSpot.NET.Api.Files.Dto
     public class Options
     {
         private string _access;
-        public string Access {
+        public string access {
             get
             {
                 if (_access == null)
@@ -59,5 +59,6 @@ namespace HubSpot.NET.Api.Files.Dto
                 _access = value;
             }
         }
+    public bool overwrite { get; set; }
     }
 }
